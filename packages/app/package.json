@@ -1,6 +1,6 @@
 {
 	"name": "@electron-app/app",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "electron-app app",
 	"main": "./lib/index.js",
 	"types": "./lib/types.d.ts",
