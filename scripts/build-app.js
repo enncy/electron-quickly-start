@@ -10,7 +10,8 @@ function cleanUp() {
 }
 
 function buildApp() {
-	return execOut('pnpm dist', { cwd: '../packages/app' });
+	// mkdir node_modules 确保 node_modules 存在，否则 pnpm dist 会报错
+	return execOut('mkdir -p node_modules && pnpm dist', { cwd: '../packages/app' });
 }
 
 exports.default = series(buildWeb, cleanUp, buildApp);
