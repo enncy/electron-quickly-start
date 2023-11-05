@@ -1,5 +1,5 @@
 {
-	"name": "{electron-app}",
+	"name": "example-name",
 	"version": "0.0.8",
 	"description": "electron-app",
 	"files": [
@@ -40,15 +40,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+{electron-app-git-url}.git"
+		"url": "git+https://github.com/enncy/electron-quickly-start.git"
 	},
 	"keywords": [],
 	"author": "enncy",
 	"license": "MIT",
 	"bugs": {
-		"url": "{electron-app-git-url}/issues"
+		"url": "https://github.com/enncy/electron-quickly-start/issues"
 	},
-	"homepage": "{electron-app-git-url}#readme",
+	"homepage": "https://github.com/enncy/electron-quickly-start#readme",
 	"config": {
 		"commitizen": {
 			"path": "./node_modules/cz-conventional-changelog"

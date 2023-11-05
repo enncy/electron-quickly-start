@@ -8,7 +8,7 @@ const ElectronRemote = require('@electron/remote/main') as typeof import('@elect
 ElectronRemote.initialize();
 
 // 设置应用名称
-app.setName('{electron-app}');
+app.setName('example-name');
 
 // 防止软件崩溃以及兼容
 app.commandLine.appendSwitch('no-sandbox');
@@ -34,7 +34,7 @@ async function bootstrap() {
 	await app.whenReady();
 	// 创建窗口
 	const window = createMainWindow({
-		title: '{electron-app}',
+		title: 'example-name',
 		icon: path.resolve('./public/favicon.ico'),
 		// 是否隐藏标题栏
 		hideTitleBar: false,

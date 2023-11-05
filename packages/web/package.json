@@ -1,5 +1,5 @@
 {
-	"name": "@{electron-app}/web",
+	"name": "@example-name/web",
 	"version": "0.0.1",
 	"description": "electron-app web",
 	"scripts": {
@@ -27,13 +27,13 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+{electron-app-git-url}.git"
+		"url": "git+https://github.com/enncy/electron-quickly-start.git"
 	},
 	"keywords": [],
 	"author": "you",
 	"license": "MIT",
 	"bugs": {
-		"url": "{electron-app-git-url}/issues"
+		"url": "https://github.com/enncy/electron-quickly-start/issues"
 	},
-	"homepage": "{electron-app-git-url}#readme"
+	"homepage": "https://github.com/enncy/electron-quickly-start#readme"
 }

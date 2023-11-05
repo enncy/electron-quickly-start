@@ -35,8 +35,8 @@ npm run release
 
 ## 替换项目占位符
 
-全局搜索: `{electron-app}` ， 英文项目名
+全局搜索: `example-name` ， 英文项目名
 
-全局搜索: `{electron-app-git-url}` ， 项目 git 地址
+全局搜索: `https://github.com/enncy/electron-quickly-start` ， 项目 git 地址
 
 替换 packages/app/electron.builder.json 里的 appId 为自己的。

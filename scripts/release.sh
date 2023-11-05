@@ -34,7 +34,7 @@ if [ "$isRelease" = "y" ]; then
     git commit -m "version release $version" &&
     git tag "$version" &&
     # 提交
-    git push origin main --tags
+    git push origin example --tags
     echo "$version 发布成功"
     elif [ "$isRelease" = "n" ]; then
     echo "取消发布"
