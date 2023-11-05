@@ -30,7 +30,7 @@ async function bootstrap() {
 	// 等待 app 准备完成
 	await app.whenReady();
 	// 创建窗口
-	const window = createWindow();
+	const window = createWindow({ hideTitleBar: false });
 
 	app.on('quit', (e) => {
 		// 交给渲染层去关闭浏览器，可以实现关闭询问功能
@@ -55,7 +55,7 @@ async function bootstrap() {
 	window.show();
 }
 
-export function createWindow() {
+export function createWindow(options?: { hideTitleBar?: boolean }) {
 	const win = new BrowserWindow({
 		title: 'electron-app',
 		icon: path.resolve('./public/favicon.ico'),
@@ -65,13 +65,17 @@ export function createWindow() {
 		height: 800,
 		center: true,
 		hasShadow: true,
-		autoHideMenuBar: true,
-		titleBarStyle: 'hidden',
-		titleBarOverlay: {
-			color: 'white',
-			symbolColor: 'black'
-		},
-		frame: false,
+		...(options?.hideTitleBar
+			? {
+					autoHideMenuBar: true,
+					titleBarStyle: 'hidden',
+					titleBarOverlay: {
+						color: 'white',
+						symbolColor: 'black'
+					},
+					frame: false
+			  }
+			: {}),
 		show: false,
 		webPreferences: {
 			zoomFactor: 1,
