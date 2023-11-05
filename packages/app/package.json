@@ -1,6 +1,6 @@
 {
 	"name": "@example-name/app",
-	"version": "0.0.8",
+	"version": "0.0.10",
 	"description": "electron-app app",
 	"main": "./lib/index.js",
 	"types": "./lib/types.d.ts",
