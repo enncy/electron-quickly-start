@@ -1,5 +1,8 @@
-import { BrowserWindow, app, shell } from 'electron';
+import { app } from 'electron';
+import { createMainWindow } from './src/utils';
 import path from 'path';
+import { registerIpc } from './src/ipc';
+
 const ElectronRemote = require('@electron/remote/main') as typeof import('@electron/remote/main');
 // 初始化 remote 模块
 ElectronRemote.initialize();
@@ -30,7 +33,16 @@ async function bootstrap() {
 	// 等待 app 准备完成
 	await app.whenReady();
 	// 创建窗口
-	const window = createWindow({ hideTitleBar: false });
+	const window = createMainWindow({
+		title: 'electron-app',
+		icon: path.resolve('./public/favicon.ico'),
+		// 是否隐藏标题栏
+		hideTitleBar: false,
+		// 处理链接跳转
+		handleOpenExternal: true,
+		// 启用 remote 模块
+		enableRemoteModule: true
+	});
 
 	app.on('quit', (e) => {
 		// 交给渲染层去关闭浏览器，可以实现关闭询问功能
@@ -53,53 +65,6 @@ async function bootstrap() {
 
 	// 加载完成显示，解决一系列的显示/黑屏问题
 	window.show();
-}
 
-export function createWindow(options?: { hideTitleBar?: boolean }) {
-	const win = new BrowserWindow({
-		title: 'electron-app',
-		icon: path.resolve('./public/favicon.ico'),
-		minHeight: 800,
-		minWidth: 1200,
-		width: 1200,
-		height: 800,
-		center: true,
-		hasShadow: true,
-		...(options?.hideTitleBar
-			? {
-					autoHideMenuBar: true,
-					titleBarStyle: 'hidden',
-					titleBarOverlay: {
-						color: 'white',
-						symbolColor: 'black'
-					},
-					frame: false
-			  }
-			: {}),
-		show: false,
-		webPreferences: {
-			zoomFactor: 1,
-			// 关闭拼写矫正
-			spellcheck: false,
-			webSecurity: true,
-			// 开启node
-			nodeIntegration: true,
-			contextIsolation: false
-		}
-	});
-
-	win.webContents.on('will-navigate', (event, url) => {
-		event.preventDefault();
-		shell.openExternal(url);
-	});
-
-	win.webContents.setWindowOpenHandler((detail) => {
-		shell.openExternal(detail.url);
-		return {
-			action: 'deny'
-		};
-	});
-	// 启用 remote 模块
-	ElectronRemote.enable(win.webContents);
-	return win;
+	registerIpc();
 }

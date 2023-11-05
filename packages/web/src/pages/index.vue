@@ -17,6 +17,12 @@
 	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ipcRenderer } from 'electron';
+
+setTimeout(() => {
+	ipcRenderer.send('create-window', 'https://baidu.com');
+}, 3000);
+</script>
 
 <style scoped lang="less"></style>

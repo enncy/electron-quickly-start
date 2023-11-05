@@ -17,9 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, nextTick } from 'vue';
 import { remote } from './utils/remote';
-import { nextTick } from 'process';
 
 const headerContainer = ref<HTMLDivElement>();
 const renderContainer = ref<HTMLDivElement>();
