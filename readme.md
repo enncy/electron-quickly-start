@@ -37,8 +37,8 @@ npm run release
 
 全局搜索: `example-name` ， 英文项目名
 
-全局搜索: `https://github.com/enncy/electron-quickly-start` ， 项目 git 地址
-
+全局搜索: `{electron-app-git-url}` ， 改成自己的项目 git 地址，如果没有则可无视
+ 
 替换 packages/app/electron.builder.json 里的 appId 为自己的。
 
 修改 scripts/release.sh 里的 37 行分支名，如果提交分支是默认的 main 则无需修改。
