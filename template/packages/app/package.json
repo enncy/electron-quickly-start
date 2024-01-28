@@ -15,7 +15,5 @@
 	},
 	"dependencies": {
 		"@electron/remote": "^2.0.12"
-	}, 
-	"keywords": [],
-	"author": "you"  
+	}
 }

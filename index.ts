@@ -5,11 +5,11 @@ import fs from 'fs';
 import path from 'path';
 
 (async () => {
-	const { project_name, project_describe } = await prompts([
+	const { project_name, project_describe, copyright } = await prompts([
 		{
 			type: 'text',
 			name: 'project_name',
-			message: "What's your project name? (default my-electron-app)",
+			message: "What's your project name?",
 			initial: 'my-electron-app',
 			validate: (value) => {
 				if (!value) return 'project name is required';
@@ -20,10 +20,20 @@ import path from 'path';
 		{
 			type: 'text',
 			name: 'project_describe',
-			message: "What's your project describe? (default an electron app)",
+			message: "What's your app describe?",
 			initial: 'an electron app',
 			validate: (value) => {
-				if (!value) return 'project describe is required';
+				if (!value) return 'app describe is required';
+				return true;
+			}
+		},
+		{
+			type: 'text',
+			name: 'copyright',
+			message: "What's your app copyright?",
+			initial: 'Copyright © 2024 xxx',
+			validate: (value) => {
+				if (!value) return 'app copyright is required';
 				return true;
 			}
 		}
@@ -41,6 +51,7 @@ import path from 'path';
 	const electronBuilderJsonPath = path.resolve(destDir, 'packages', 'app', 'electron.builder.json');
 	const electronBuilderJson = JSON.parse(fs.readFileSync(electronBuilderJsonPath, 'utf-8'));
 	electronBuilderJson.productName = project_name;
+	electronBuilderJson.copyright = copyright;
 	electronBuilderJson.extraMetadata.name = project_name;
 	electronBuilderJson.extraMetadata.description = project_describe;
 	fs.writeFileSync(electronBuilderJsonPath, JSON.stringify(electronBuilderJson, null, 2));
