@@ -1,6 +1,6 @@
 {
 	"name": "create-eqs-cli",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "cli of eqs",
 	"main": "index.js",
 	"scripts": {
@@ -11,7 +11,8 @@
 		"template"
 	],
 	"keywords": [
-		"cli","electron"
+		"cli",
+		"electron"
 	],
 	"bin": {
 		"init": "./index.js"
