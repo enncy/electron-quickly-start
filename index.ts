@@ -5,18 +5,29 @@ import fs from 'fs';
 import path from 'path';
 
 (async () => {
-	const { project_name } = await prompts({
-		type: 'text',
-		name: 'project_name',
-		message: "What's your project name? (default my-electron-app)",
-		active: 'my-electron-app'
-	});
-	const { project_describe } = await prompts({
-		type: 'text',
-		name: 'project_describe',
-		message: "What's your project describe? (default an electron app)",
-		active: 'an electron app'
-	});
+	const { project_name, project_describe } = await prompts([
+		{
+			type: 'text',
+			name: 'project_name',
+			message: "What's your project name? (default my-electron-app)",
+			initial: 'my-electron-app',
+			validate: (value) => {
+				if (!value) return 'project name is required';
+				if (fs.existsSync(path.resolve(process.cwd(), value))) return 'project already exists';
+				return true;
+			}
+		},
+		{
+			type: 'text',
+			name: 'project_describe',
+			message: "What's your project describe? (default an electron app)",
+			initial: 'an electron app',
+			validate: (value) => {
+				if (!value) return 'project describe is required';
+				return true;
+			}
+		}
+	]);
 
 	const sourceDir = path.resolve(__dirname, 'template');
 	const destDir = path.resolve(process.cwd(), project_name);
