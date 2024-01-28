@@ -1,9 +1,8 @@
 {
-	"name": "@{electron-app}/app",
-	"version": "0.0.8",
-	"description": "electron-app app",
+	"name": "app",
+	"version": "0.0.1",
+	"description": "app of electron-app",
 	"main": "./lib/index.js",
-	"types": "./lib/types.d.ts",
 	"scripts": {
 		"dev": "tsc && chcp 65001 && electron .",
 		"dev:mac": "tsc && electron .",
@@ -16,16 +15,7 @@
 	},
 	"dependencies": {
 		"@electron/remote": "^2.0.12"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+{electron-app-git-url}.git"
-	},
+	}, 
 	"keywords": [],
-	"author": "you",
-	"license": "MIT",
-	"bugs": {
-		"url": "{electron-app-git-url}/issues"
-	},
-	"homepage": "{electron-app-git-url}#readme"
+	"author": "you"  
 }
