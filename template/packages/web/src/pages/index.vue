@@ -5,12 +5,12 @@
 			<h2 style="display: flex; align-items: center; justify-content: center">
 				<img
 					width="64"
-					src="@/../public/img/vue-logo.png"
+					src="@/assets/img/vue-logo.png"
 				/>
 				+
 				<img
 					width="64"
-					src="@/../public/img/electron-logo.svg"
+					src="@/assets/img/electron-logo.svg"
 				/>
 			</h2>
 		</div>
