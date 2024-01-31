@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 
 (async () => {
-	const { project_name, project_describe, copyright } = await prompts([
+	const { project_name, project_describe } = await prompts([
 		{
 			type: 'text',
 			name: 'project_name',
@@ -15,7 +15,8 @@ import path from 'path';
 				if (!value) return 'project name is required';
 				if (fs.existsSync(path.resolve(process.cwd(), value))) return 'project already exists';
 				return true;
-			}
+			},
+			format: (value) => value.trim()
 		},
 		{
 			type: 'text',
@@ -25,17 +26,8 @@ import path from 'path';
 			validate: (value) => {
 				if (!value) return 'app describe is required';
 				return true;
-			}
-		},
-		{
-			type: 'text',
-			name: 'copyright',
-			message: "What's your app copyright?",
-			initial: 'Copyright © 2024 xxx',
-			validate: (value) => {
-				if (!value) return 'app copyright is required';
-				return true;
-			}
+			},
+			format: (value) => value.trim()
 		}
 	]);
 
@@ -48,13 +40,29 @@ import path from 'path';
 	packageJson.name = project_name;
 	fs.writeFileSync(path.resolve(destDir, 'package.json'), JSON.stringify(packageJson, null, 2));
 
+	/**
+	 * 替换 electron 打包配置文件参数
+	 */
 	const electronBuilderJsonPath = path.resolve(destDir, 'packages', 'app', 'electron.builder.json');
-	const electronBuilderJson = JSON.parse(fs.readFileSync(electronBuilderJsonPath, 'utf-8'));
-	electronBuilderJson.productName = project_name;
-	electronBuilderJson.copyright = copyright;
-	electronBuilderJson.extraMetadata.name = project_name;
-	electronBuilderJson.extraMetadata.description = project_describe;
-	fs.writeFileSync(electronBuilderJsonPath, JSON.stringify(electronBuilderJson, null, 2));
+	const electronBuilderJsonContent = fs
+		.readFileSync(electronBuilderJsonPath, 'utf-8')
+		.replace('{ELECTRON-APP-NAME}', project_name)
+		.replace('{ELECTRON-APP-DESC}', project_describe);
+	fs.writeFileSync(electronBuilderJsonPath, JSON.stringify(JSON.parse(electronBuilderJsonContent), null, 2));
+
+	/**
+	 * 替换 electron 入口文件参数
+	 */
+	const appIndexPath = path.resolve(destDir, 'packages', 'app', 'index.ts');
+	const appIndexContent = fs.readFileSync(appIndexPath, 'utf-8').replace('{ELECTRON-APP-NAME}', project_name);
+	fs.writeFileSync(appIndexPath, appIndexContent);
+
+	/**
+	 * 替换 html 标题
+	 */
+	const htmlPath = path.resolve(destDir, 'packages', 'web', 'index.html');
+	const htmlContent = fs.readFileSync(htmlPath, 'utf-8').replace('{ELECTRON-APP-NAME}', project_name);
+	fs.writeFileSync(htmlPath, htmlContent);
 
 	const l = console.log;
 

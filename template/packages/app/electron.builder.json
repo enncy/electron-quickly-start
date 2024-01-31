@@ -2,10 +2,10 @@
 	"$schema": "https://json.schemastore.org/electron-builder.json",
 	"appId": "example.com",
 	"extraMetadata": {
-		"name": "{electron-app}",
-		"description": "electron-app"
+		"name": "{ELECTRON-APP-NAME}",
+		"description": "{ELECTRON-APP-DESC}"
 	},
-	"productName": "{electron-app}",
+	"productName": "{ELECTRON-APP-NAME}",
 	"asar": false,
 	"copyright": "Copyright © 2021 ${author}",
 	"nsis": {
@@ -15,12 +15,12 @@
 	},
 	"win": {
 		"icon": "public/img/favicon.png",
-		"artifactName": "{electron-app}-${version}-setup-${os}-${arch}.${ext}",
+		"artifactName": "{ELECTRON-APP-NAME}-${version}-setup-${os}-${arch}.${ext}",
 		"target": [{ "target": "nsis", "arch": ["x64", "ia32"] }]
 	},
 	"mac": {
 		"icon": "public/img/favicon.icns",
-		"artifactName": "{electron-app}-${version}-setup-${os}-${arch}.${ext}",
+		"artifactName": "{ELECTRON-APP-NAME}-${version}-setup-${os}-${arch}.${ext}",
 		"target": [
 			{ "target": "zip", "arch": ["x64", "arm64"] },
 			{ "target": "dmg", "arch": ["x64", "arm64"] }
@@ -28,7 +28,7 @@
 	},
 	"linux": {
 		"icon": "public/img/favicon.png",
-		"artifactName": "{electron-app}-${version}-setup-${os}-${arch}.${ext}",
+		"artifactName": "{ELECTRON-APP-NAME}-${version}-setup-${os}-${arch}.${ext}",
 		"target": [{ "target": "AppImage", "arch": ["x64", "arm64"] }]
 	}
 }
