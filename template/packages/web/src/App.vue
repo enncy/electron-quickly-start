@@ -19,9 +19,17 @@
 <script setup lang="ts">
 import { onMounted, ref, nextTick } from 'vue';
 import { remote } from './utils/remote';
+import { ipcRenderer } from 'electron';
 
 const headerContainer = ref<HTMLDivElement>();
 const renderContainer = ref<HTMLDivElement>();
+
+// 显示复制粘贴菜单栏
+window.addEventListener('contextmenu', (e) => {
+	e.preventDefault();
+	ipcRenderer.send('show-context-menu');
+});
+
 
 onMounted(() => {
 	nextTick(() => {
