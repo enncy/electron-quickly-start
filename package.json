@@ -1,6 +1,6 @@
 {
 	"name": "create-eqs-cli",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"description": "cli of eqs",
 	"main": "index.js",
 	"scripts": {
