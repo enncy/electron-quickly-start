@@ -12,7 +12,10 @@
 		"lib": ["esnext", "dom"],
 		"skipLibCheck": true,
 		"outDir": "./lib",
-		"typeRoots": ["./src/env.d.ts"]
+		"typeRoots": ["./src/env.d.ts"],
+		"paths": {
+			"@/*": ["./src/*"]
+		}
 	},
-	"include": ["src/**/*.ts", "src/**/*.d.ts"]
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"]
 }

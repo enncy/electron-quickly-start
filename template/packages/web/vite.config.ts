@@ -25,6 +25,7 @@ export default defineConfig({
 	server: {
 		open: false
 	},
+	// 不要更改，这里是打包后的文件路径，如果更改，打包后的文件路径会出错
 	base: '',
 	resolve: {
 		alias: {
