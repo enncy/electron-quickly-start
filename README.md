@@ -19,9 +19,16 @@ pnpm i
 
 打开两个终端分别启动 vue 和 electron
 
+> 注意，如果是 Mac 或者 Ubuntu 启动时需要在 packages/app/packages.json 文件里吧 scripts 字段里的 dev 字段
+> 改成 `"tsc && electron ."` 删除掉 `chcp 65001` 命令，这个命令是用于在 windows 中运行的，防止 electron 的 console 输出乱码。
+
+先启动 vue 项目
+
 ```bash
 npm run dev:web
 ```
+
+再启动 electron 项目
 
 ```bash
 npm run dev:app

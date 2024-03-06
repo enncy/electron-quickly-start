@@ -1,4 +1,5 @@
-import { BrowserWindow, ipcMain } from 'electron';
+import { Menu } from '@electron/remote';
+import { BrowserWindow, MenuItemConstructorOptions, ipcMain } from 'electron';
 
 export function registerIpc() {
 	ipcMain.on('create-window', (e, url) => {
@@ -6,7 +7,6 @@ export function registerIpc() {
 		console.log(url);
 		win.loadURL(url);
 	});
-
 
 	// 显示复制粘贴菜单栏
 	ipcMain.on('show-context-menu', (event) => {
