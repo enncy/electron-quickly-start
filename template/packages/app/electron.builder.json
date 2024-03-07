@@ -7,7 +7,7 @@
 	},
 	"productName": "{ELECTRON-APP-NAME}",
 	"asar": false,
-	"copyright": "Copyright © 2021 ${author}",
+	"copyright": "Copyright © 2021 YOUR_NAME",
 	"nsis": {
 		"oneClick": false,
 		"perMachine": true,

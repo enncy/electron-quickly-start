@@ -48,6 +48,6 @@ npm run release
 
 ## 替换项目占位符以及变量等可修改内容
 
-替换 packages/app/electron.builder.json 里的 `appId` 为自己的项目域名，例如 electron.baidu.com ， 以及 `copyright` 。
+替换 packages/app/electron.builder.json 里的 `appId` 为自己的项目域名，例如 electron.baidu.com ， 以及 `copyright` 中的 YOUR_NAME 改成自己的名字，或者自行修改版权格式 。
 
 修改 scripts/release.sh 里的 37 行分支名，如果提交分支是默认的 main 则无需修改。
